@@ -21,11 +21,13 @@ class htmlTable
             $tableGen .= '<tr>';
             foreach ($record as $key => $value) {
                 if ($key == 'id') {
-                    $tableGen .= '<td><a href="index.php?page=' . $referingPage . '&action=show&id=' . $value . '">View</a></td>';
-                } else {
+                    $id1=$value;
+                } 
                     $tableGen .= '<td>' . $value . '</td>';
-                }
             }
+            $tableGen .= '<td><a href="index.php?page=' . $referingPage . '&action=show&id=' . $id1 . '">edit</a></td>';
+            $tableGen .= '<td><a href="index.php?page=' . $referingPage . '&action=edit&id=' . $id1 . '">delete</a></td>';
+            $id1='';
             $tableGen .= '</tr>';
         }
         $tableGen .= '</table>';
