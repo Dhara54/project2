@@ -121,6 +121,15 @@ class routes
         $route->controller = 'accountsController';
         $route->method = 'store';
         $routes[] = $route;
+
+        $route = new route();
+        $route->http_method = 'POST';
+        $route->action = 'delete';
+        $route->page = 'tasks';
+        $route->controller = 'tasksController';
+        $route->method = 'delete';
+        $routes[] = $route;
+
         return $routes;
     }
     public static function create($http_method,$action,$page,$controller,$method) {
