@@ -5,11 +5,7 @@ abstract class model
 {
     public function save()
     {
-        if($this->validate() == FALSE) {
-            echo 'failed validation';
-            exit;
-        }
-        if ($this->id != '') {
+      if ($this->id != '') {
             $sql = $this->update();
         } else {
             $sql = $this->insert();
@@ -17,18 +13,8 @@ abstract class model
         }
         $db = dbConn::getConnection();
         $statement = $db->prepare($sql);
-        $array = get_object_vars($this);
-        if ($INSERT == TRUE) {
-            unset($array['id']);
-        }
-        foreach (array_flip($array) as $key => $value) {
-            $statement->bindParam(":$value", $this->$value);
-        }
         $statement->execute();
-        if ($INSERT == TRUE) {
-            $this->id = $db->lastInsertId();
-        }
-        return $this->id;
+        
         }
     private function insert()
     {
@@ -53,6 +39,8 @@ abstract class model
         $sql = 'UPDATE ' . $tableName . ' SET ';
         foreach ($array as $key => $value) {
             if (!empty($value)) {
+            echo '<br>';
+            echo $value;
                 $sql .= $comma . $key . ' = "' . $value . '"';
                 $comma = ", ";
             }
