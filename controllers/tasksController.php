@@ -41,8 +41,19 @@ class tasksController extends http\controller
     //this would be for the post for sending the task edit form
     public static function store()
     {
-         $id=$_REQUEST['id'];
-         $record = todos::findOne($_REQUEST['id']);
+        $id=$_REQUEST['id'];
+        if($id==null){
+          $record=new \todo;
+          $record->owneremail=$_POST['owneremail'];
+          $record->ownerid=$_POST['ownerid'];
+          $record->createddate=$_POST['createddate'];
+          $record->duedate=$_POST['duedate'];
+          $record->message=$_POST['message'];
+          $record->isdone=$_POST['isdone'];
+          $record->save(); 
+        }
+        else{
+          $record = todos::findOne($_REQUEST['id']);
           $record->owneremail=$_POST['owneremail'];
           $record->ownerid=$_POST['ownerid'];
           $record->createddate=$_POST['createddate'];
@@ -50,14 +61,8 @@ class tasksController extends http\controller
           $record->message=$_POST['message'];
           $record->isdone=$_POST['isdone'];
           $record->save();
-      header('Location:index.php?page=tasks&action=all');
-    }
-    public static function save() {
-        session_start();
-        $task = new todo();
-        $task->body = $_POST['body'];
-        $task->ownerid = $_SESSION['userID'];
-        $task->save();
+          }
+        header('Location:index.php?page=tasks&action=all');
     }
     //this is the delete function.  You actually return the edit form and then there should be 2 forms on that.
     //One form is the todo and the other is just for the delete button
