@@ -130,6 +130,14 @@ class routes
         $route->method = 'delete';
         $routes[] = $route;
 
+        $route = new route();
+        $route->http_method = 'GET';
+        $route->action = 'create';
+        $route->page = 'tasks';
+        $route->controller = 'tasksController';
+        $route->method = 'create';
+        $routes[] = $route;
+
         return $routes;
     }
     public static function create($http_method,$action,$page,$controller,$method) {
