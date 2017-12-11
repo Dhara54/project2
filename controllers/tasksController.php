@@ -36,11 +36,12 @@ class tasksController extends http\controller
     public static function edit()
     {
         $record = todos::findOne($_REQUEST['id']);
-        self::getTemplate('edit_task', $record);
+        self::getTemplate('edit_tasks', $record);
     }
     //this would be for the post for sending the task edit form
     public static function store()
     {
+        //echo 'in store';
         $id=$_REQUEST['id'];
         if($id==null){
           $record=new \todo;
@@ -70,6 +71,7 @@ class tasksController extends http\controller
     {
         $record = todos::findOne($_REQUEST['id']);
         $record->delete();
-        print_r($_POST);
+        //print_r($_POST);
+        header('Location:index.php?page=tasks&action=all');
     }
 }
