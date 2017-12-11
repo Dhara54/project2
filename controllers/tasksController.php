@@ -28,9 +28,9 @@ class tasksController extends http\controller
     //to call the show function the url is called with a post to: index.php?page=task&action=create
     //this is a function to create new tasks
     //you should check the notes on the project posted in moodle for how to use active record here
-    public static function create()
+   public static function create()
     {
-        print_r($_POST);
+        self::getTemplate('create_task', NULL);
     }
     //this is the function to view edit record form
     public static function edit()
