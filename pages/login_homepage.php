@@ -18,6 +18,16 @@
     <![endif]-->
 </head>
 
+<style>
+html body {
+    background: linear-gradient(to bottom right, #7575a3, #ffffff);
+    text-align:center;
+}
+label {
+width:100px;
+}
+</style>
+
 <body>
 
 

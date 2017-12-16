@@ -78,17 +78,15 @@ class accountsController extends http\controller
     //this is to login, here is where you find the account and allow login or deny.
      public static function login()
     {
-        $user = accounts::findUserbyEmail($_REQUEST['uname']);
+        $user = accounts::findUserbyEmail($_REQUEST['email']);
         //print_r($user);
         if ($user == FALSE) {
             echo 'user not found';
         } else {
-            if($user->checkPassword($_POST['psw']) == TRUE) {
+            if($user->checkPassword($_POST['password']) == TRUE) {
                 //echo 'login';
                 session_start();
                 $_SESSION["userID"] = $user->id;
-                //forward the user to the show all todos page
-                //print_r($_SESSION);
                 self::getTemplate('login_homepage', NULL);
             } else {
                 echo 'password does not match';

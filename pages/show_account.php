@@ -16,6 +16,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
 </head>
 
+<style>
+html body {
+    background: linear-gradient(to bottom right, #7575a3, #ffffff);
+    text-align:center;
+}
+label {
+width:100px;
+}
+</style>
+
 <body>
 
 
@@ -24,17 +34,35 @@
 <form action="index.php?page=accounts&action=edit&id=<?php echo $data->id; ?>" method="post" class = "form-inline">
     
     <div class = "form-group">
-    First name: <input type="text" class="form-control" name="fname" value="<?php echo $data->fname; ?>"readonly>
-    </div>
-    <br><br>
+    <label>First name-</label> 
+    <input type="text" class="form-control" name="fname" value="<?php echo $data->fname; ?>"readonly>
+    </div><br><br>
+    
+    <div class = "form-group">
+    <label>Last name-</label>
+    <input type="text" name="lname" value="<?php echo $data->lname; ?>"readonly>
+    </div><br><br>
+    
+    <div class = "form-group">
+    <label>Email-</label>
+    <input type="text" name="email" value="<?php echo $data->email; ?>"readonly>
+    </div><br><br>
+    
+    <div class = "form-group">
+    <label>Phone-</label>
+    <input type="text" name="phone" value="<?php echo $data->phone; ?>"readonly>
+    </div><br><br>
+    
+    <div class = "form-group">
+    <label>Birthday-</label>
+    <input type="text" name="birthday" value="<?php echo $data->birthday; ?>"readonly>
+    </div><br><br>
+    
+    <div class = "form-group">
+    <label>Gender-</label>
+    <input type="text" name="gender" value="<?php echo $data->gender; ?>"readonly>
+    </div><br><br>
 
-    Last name: <input type="text" name="lname" value="<?php echo $data->lname; ?>"readonly><br><br>
-    Email: <input type="text" name="email" value="<?php echo $data->email; ?>"readonly><br><br>
-    Phone: <input type="text" name="phone" value="<?php echo $data->phone; ?>"readonly><br><br>
-    Birthday: <input type="text" name="birthday" value="<?php echo $data->birthday; ?>"readonly><br><br>
-    Gender: <input type="text" name="gender" value="<?php echo $data->gender; ?>"readonly><br><br>
-    <br><br>
-    </div>
     <input type="submit" value="Edit">
 </form>
 
