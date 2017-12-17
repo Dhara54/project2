@@ -7,26 +7,22 @@ class tasksController extends http\controller
     //to call the show function the url is index.php?page=task&action=show
     public static function show()
     {
+        session_start();
+        if(key_exists('userID',$_SESSION)) {
         $record = todos::findOne($_REQUEST['id']);
         self::getTemplate('show_task', $record);
+        }
+        else {
+               $error = 'you must be logged in to view tasks';
+               self::getTemplate('error', $error);
+           }
     }
     //to call the show function the url is index.php?page=task&action=list_task
     public static function all()
     {
         $records = todos::findAll();
-        /*session_start();
-           if(key_exists('userID',$_SESSION)) {
-               $userID = $_SESSION['userID'];
-           } else {
-               echo 'you must be logged in to view tasks';
-           }
-        $userID = $_SESSION['userID'];
-        $records = todos::findTasksbyID($userID);
-        */
-        //$records = todos::findAll();
          session_start();
          if(key_exists('userID',$_SESSION)) {
-               $userID = $_SESSION['userID'];
                $userID = $_SESSION['userID'];
                $records = todos::findTasksbyID($userID);
                self::getTemplate('all_tasks', $records);

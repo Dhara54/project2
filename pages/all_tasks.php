@@ -1,38 +1,107 @@
-<!doctype html>
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-
-    <title>The HTML5 Herald</title>
-    <meta name="description" content="The HTML5 Herald">
-    <meta name="author" content="SitePoint">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <title>WSD Project</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-    <link rel="stylesheet" href="css/styles.css?v=1.0">
-
-    <!--[if lt IE 9]>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
-    <![endif]-->
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 650px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      
+      background: linear-gradient(to bottom right, #8080ff, #ffffff);
+      height: 100%;
+    }
+    
+    .col-sm-6{
+      
+      background: linear-gradient(to bottom right, #ccccff, #ffffff);
+    }
+    
+    .glyphicon-user {
+    height:30px;
+    font-size: 18px;
+    }
+    
+    .glyphicon-log-out {
+    height:30px;
+    font-size: 18px;
+    }
+    
+    .btn-primary{
+      position:relative;
+      top:20px;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+     label{
+      width:100px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;} 
+    }
+  </style>
 </head>
 
-<style>
-html body {
-    background: linear-gradient(to bottom right, #7575a3, #ffffff);
-    text-align:center;
-}
-label {
-width:100px;
-}
-</style>
-
 <body>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">Logo</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><form action="index.php?page=accounts&action=show" method="POST">
+        <button type="submit"  class="btn btn-primary"><span class="glyphicon glyphicon-user"></span>Profile</button>
+        </form></li>
+        <li><form action="index.php?page=accounts&action=logout" method="POST">
+        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-log-out"></span>&nbsp Logout</button>
+        </form></li>
+          
+      </ul>
+    </div>
+  </div>
+</nav>
+  
+<div class="container-fluid text-center">    
+  <div class="row content">
+    <div class="col-sm-12 sidenav">
 
 <?php
 $text='';
-$text.='<h2>Pending Tasks</h2><br>';
+$text.='<h2>Tasks</h2><br>';
 $text.='<h4><a href="index.php?page=tasks&action=create">Create New Task</a></h4><br>';
 
 
@@ -42,12 +111,17 @@ if($data==FALSE){
 }
 else{
 $text.=utility\htmlTable::genarateTableFromMultiArray($data);
-$text.='</center>';
 echo $text;
 }
 ?>
 
+</div>
+</div>
+</div>
 
+<footer class="container-fluid text-center">
+  <p>Developed By Dhara Patel(dbp54)</p>
+</footer>
 <script src="js/scripts.js"></script>
 </body>
 </html>
