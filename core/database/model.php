@@ -1,40 +1,45 @@
 <?php
 namespace database;
-use http\controller;
 abstract class model
 {
-    public function save()
-    {
+    public function save(){
+      
+      $result= $this->validate();
+      
+      if($result=='pass'){
       if ($this->id != '') {
-            $sql = $this->update();
-        } else {
-            $sql = $this->insert();
-            $INSERT = TRUE;
+        $sql = $this->update();
+        } 
+      else {
+        $sql = $this->insert();
+        $INSERT = TRUE;
         }
-        $db = dbConn::getConnection();
-        $statement = $db->prepare($sql);
-        $statement->execute();
-        
-        }
+      $db = dbConn::getConnection();
+      $statement = $db->prepare($sql);
+      $statement->execute();
+    }
+      else{
+      echo $result;
+      exit;
+    }
+    }
 
-    public function lastID(){
+       public function lastID(){
       $modelName = static::$modelName;
       $tableName = $modelName::getTablename();
       $db = dbConn::getConnection();
       $sql='select MAX(id) from '.$tableName;
-      echo $sql;
       $statement = $db->prepare($sql);
       $statement->execute();
       $statement->setFetchMode();
       $recordsSet =  $statement->fetchAll(\PDO::FETCH_ASSOC);
       $record=$recordsSet[0];
       $LastID= $record["MAX(id)"];
-      //echo $LastID;
       return $LastID+1;
     }
+   
     private function insert()
     {
-        //echo 'in insert';
         $id=$this->lastID();
         $this->id=$id;
         $modelName = static::$modelName;
@@ -44,13 +49,31 @@ abstract class model
         $columnString1=implode(',', $columnString);
         $valueString = "'".implode("','", $array)."'";
         $sql = 'INSERT INTO ' . $tableName . ' (' . $columnString1 . ') VALUES (' . $valueString . ')';
-        //echo $sql;
         return $sql;
     }
     
-    public function validate() {
-        return TRUE;
+     public function validate() {
+      $flag='pass';
+      $modelName = static::$modelName;
+      $tableName = $modelName::getTablename();
+      
+      
+      if($tableName =='todos'){
+        $message=$this->message;
+        $isDone=$this->isdone;
+        
+        if(strlen($message)<6){
+          $flag='Message too short ! Enter message of atleast 6 characters';
+          
+        }
+        if($isDone>=2 or $isDone<0){
+          $flag='IsDone should be boolean';
+          
+            }
     }
+    return $flag;
+    }
+
     private function update()
     {
         $modelName = static::$modelName;
@@ -60,6 +83,7 @@ abstract class model
         $sql = 'UPDATE ' . $tableName . ' SET ';
         foreach ($array as $key => $value) {
             if (!empty($value)) {
+            
                 $sql .= $comma . $key . ' = "' . $value . '"';
                 $comma = ", ";
             }
@@ -67,6 +91,7 @@ abstract class model
         $sql .= ' WHERE id=' . $this->id;
         return $sql;
     }
+    
     public function delete()
     {
         $db = dbConn::getConnection();
