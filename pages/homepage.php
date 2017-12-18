@@ -27,6 +27,7 @@
     .col-sm-6{
       
       background: linear-gradient(to bottom right, #ccccff, #ffffff);
+      height: 100%;
     }
     
     /* Set black background color, white text and some padding */
@@ -58,15 +59,8 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#">Logo</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>
     </div>
   </div>
 </nav>

@@ -1,5 +1,4 @@
 <?php
-
 class routes
 {
     public static function getRoutes()
@@ -38,6 +37,14 @@ class routes
         $route->page = 'accounts';
         $route->controller = 'accountsController';
         $route->method = 'logout';
+        $routes[] = $route;
+        
+        $route = new route();
+        $route->http_method = 'GET';
+        $route->action = 'goback';
+        $route->page = 'accounts';
+        $route->controller = 'accountsController';
+        $route->method = 'goback';
         $routes[] = $route;
         
         

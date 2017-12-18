@@ -1,5 +1,4 @@
 <?php
-
 class accountsController extends http\controller
 {
     
@@ -37,7 +36,7 @@ class accountsController extends http\controller
             $user->password = $_POST['password'];
             $user->password = account::setPassword($_POST['password']);
             $user->save();
-            header("Location: index.php?page=homepage&action=show");
+            self::getTemplate('register');
         } else {
             $error = 'already registered';
             self::getTemplate('error', $error);
@@ -49,7 +48,6 @@ class accountsController extends http\controller
         $record = accounts::findOne($_REQUEST['id']);
         self::getTemplate('edit_account', $record);
     }
-
     public static function save() {
         $user = accounts::findOne($_REQUEST['id']);
         $user->email = $_POST['email'];
@@ -59,7 +57,6 @@ class accountsController extends http\controller
         $user->birthday = $_POST['birthday'];
         $user->gender = $_POST['gender'];
         $user->save();
-
         self::getTemplate('login_homepage', NULL);
     }
     public static function delete() {
@@ -87,6 +84,11 @@ class accountsController extends http\controller
                 self::getTemplate('error', $error);
             }
         }
+    }
+    
+    public static function goback()
+    {
+      self::getTemplate('login_homepage', NULL);
     }
     
     public static function logout()

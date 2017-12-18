@@ -8,16 +8,13 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <style>
-    /* Remove the navbar's default margin-bottom and rounded borders */ 
     .navbar {
       margin-bottom: 0;
       border-radius: 0;
     }
     
-    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
     .row.content {height: 650px}
     
-    /* Set gray background color and 100% height */
     .sidenav {
       padding-top: 20px;
       
@@ -31,21 +28,20 @@
     }
     
     .glyphicon-user {
-    height:30px;
-    font-size: 18px;
+    height:20px;
+    font-size: 10px;
     }
     
     .glyphicon-log-out {
-    height:30px;
-    font-size: 18px;
+    height:20px;
+    font-size: 10px;
     }
     
     .btn-primary{
       position:relative;
-      top:20px;
+      top:10px;
     }
     
-    /* Set black background color, white text and some padding */
     footer {
       background-color: #555;
       color: white;
@@ -56,7 +52,6 @@
       width:100px;
     }
     
-    /* On small screens, set height to 'auto' for sidenav and grid */
     @media screen and (max-width: 767px) {
       .sidenav {
         height: auto;
@@ -80,7 +75,7 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
+        <li class="active"><a href="index.php?page=accounts&action=goback">Home</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><form action="index.php?page=accounts&action=show" method="POST">
