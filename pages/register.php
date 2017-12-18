@@ -77,7 +77,7 @@
         <input type="text" placeholder="Enter Username" name="email" required>
 
         <label><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="password" required>
+        <input type="password" placeholder="Enter Password" name="password" pattern=".{6,}" required>
 
         <button type="submit" class="btn btn-default">Login</button>
 		</form>

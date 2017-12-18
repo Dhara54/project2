@@ -118,7 +118,7 @@
     </div>
     <div class = "form-group">
     <label>Password-</label>
-    <input type="password" class="form-control" name="password" value="" required>
+     <input type="password" class="form-control" pattern=".{6,}" placeholder="min 6 chars" name="password" required><br><br>
     </div>
     
     <button type="submit" form="form1" class="btn btn-primary" value="Submit">Register</button>
